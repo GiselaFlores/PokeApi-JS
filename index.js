@@ -9,29 +9,30 @@ let URL = "https://pokeapi.co/api/v2/pokemon/";
 
 // ejemplo: "https://pokeapi.co/api/v2/pokemon/151"
 
-for(let i; i <=151; i++){
+for (let i = 1; i <= 200; i++) {
     fetch(URL + i)
-        .then((response)=> response.json())
+        .then((response) => response.json())
         .then(data => mostrarPokemon(data))
 }
 
+
 //funcion que genera la card
 
-function mostrarPokemon(poke){
+function mostrarPokemon(poke) {
 
-    const div = document.createElement("div");
-    div.classList.add("pokemon");
-
-    let tipos = poke.types.map((type)=> `<p class="${type.type.name} tipo" >${type.type.name} </p>`);
-    tipos = tipos.join("");
+    let tipos = poke.types.map((type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`);
+    tipos = tipos.join('');
 
     let pokeId = poke.id.toString();
-    if(pokeId.length === 1){
+    if (pokeId.length === 1) {
         pokeId = "00" + pokeId;
-    } else if(pokeId.length === 2){
+    } else if (pokeId.length === 2) {
         pokeId = "0" + pokeId;
     }
 
+
+    const div = document.createElement("div");
+    div.classList.add("pokemon");
     div.innerHTML = `
         <p class="pokemon-id-back">#${pokeId}</p>
         <div class="pokemon-imagen">
@@ -54,3 +55,5 @@ function mostrarPokemon(poke){
 
     listaPokemon.append(div);
 }
+
+
